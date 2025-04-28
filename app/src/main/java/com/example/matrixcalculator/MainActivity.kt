@@ -15,8 +15,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.wifiscanner.GradientTextSimple
 
 val DarkBackground = Color(0xFF0F1316)
 val DarkText = Color(0xFF122026)
@@ -218,14 +220,18 @@ fun MatrixCalculatorApp(viewModel: MatrixViewModel = viewModel()) {
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = "Matrix Calculator",
-            style = MaterialTheme.typography.headlineMedium.copy(
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 16.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            GradientTextSimple(
+                text = "Matrix Calculator",
+                fontSize = 26.sp,
                 fontWeight = FontWeight.Bold
-            ),
-            color = LightGreen,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
+            )
+        }
 
         when (currentStep) {
             Step.DIMENSIONS -> DimensionsInputScreen(viewModel) {
@@ -291,7 +297,9 @@ fun DimensionsInputScreen(viewModel: MatrixViewModel, onNext: () -> Unit) {
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            Text("Matrix A Dimensions", style = MaterialTheme.typography.titleMedium)
+            Text("Matrix A Dimensions", style = MaterialTheme.typography.titleMedium, color = LightText)
+
+            Spacer(modifier = Modifier.height(10.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
@@ -348,9 +356,12 @@ fun DimensionsInputScreen(viewModel: MatrixViewModel, onNext: () -> Unit) {
                 )
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(32.dp))
 
-            Text("Matrix B Dimensions", style = MaterialTheme.typography.titleMedium)
+            Text("Matrix B Dimensions", style = MaterialTheme.typography.titleMedium, color = LightText)
+
+            Spacer(modifier = Modifier.height(10.dp))
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
@@ -407,7 +418,7 @@ fun DimensionsInputScreen(viewModel: MatrixViewModel, onNext: () -> Unit) {
                 )
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(32.dp))
 
             Button(
                 onClick = onNext,
@@ -538,7 +549,8 @@ fun OperationSelectionScreen(viewModel: MatrixViewModel, onNext: () -> Unit) {
                         )
                     ) {
                         Text(
-                            "Add",
+                            "+",
+                            fontSize = 24.sp,
                             color = MaterialTheme.colorScheme.onSecondary
                         )
                     }
@@ -551,7 +563,8 @@ fun OperationSelectionScreen(viewModel: MatrixViewModel, onNext: () -> Unit) {
                         )
                     ) {
                         Text(
-                            "Subtract",
+                            "–",
+                            fontSize = 24.sp,
                             color = MaterialTheme.colorScheme.onSecondary
                         )
                     }
@@ -571,7 +584,8 @@ fun OperationSelectionScreen(viewModel: MatrixViewModel, onNext: () -> Unit) {
                         )
                     ) {
                         Text(
-                            "Multiply",
+                            "×",
+                            fontSize = 24.sp,
                             color = MaterialTheme.colorScheme.onSecondary
                         )
                     }
@@ -584,14 +598,15 @@ fun OperationSelectionScreen(viewModel: MatrixViewModel, onNext: () -> Unit) {
                         )
                     ) {
                         Text(
-                            "Divide",
+                            "÷",
+                            fontSize = 24.sp,
                             color = MaterialTheme.colorScheme.onSecondary
                         )
                     }
                 }
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(32.dp))
 
             Button(
                 onClick = {
